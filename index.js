@@ -33,40 +33,22 @@ inquire
 .then ((response) => {
 
     console.log(response)
-})
+    const {profileName, location, bio,linkedin, github} = response
+
+    console.log(profileName)
+    console.log(location)
+    console.log(bio)
+    console.log(linkedin)
+    console.log(github)
+    
+    createhtmlPage(profileName, location,bio,linkedin, github)
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function createhtmlPage (profileName, location,bio,linkedin, github){
 
 var htmlTemplate =`<!doctype html>
 <html lang="en">
@@ -85,11 +67,11 @@ var htmlTemplate =`<!doctype html>
 
     <div class="container">
       <div class="row row-cols-1">
-        <div class="col">Name: </div>
-        <div class="col">Location: </div>
-        <div class="col">Bio: </div>
-        <div class="col">Linkedin URL:</div>
-        <div class="col">GitHub URL:</div>
+        <div class="col">Name:${profileName} </div>
+        <div class="col">Location:${location} </div>
+        <div class="col">Bio: ${bio}</div>
+        <div class="col">Linkedin URL:${linkedin}</div>
+        <div class="col">GitHub URL:${github}</div>
       </div>
     </div>
 
@@ -99,3 +81,10 @@ var htmlTemplate =`<!doctype html>
     
   </body>
 </html>`
+
+
+fs.writeFile('index.html',htmlTemplate, (err) =>
+err ? console.error(err) : console.log('Success!')
+);
+
+}})
